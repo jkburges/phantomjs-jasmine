@@ -18,15 +18,48 @@
   <script type="text/javascript" src="spec/SpecHelper.js"></script>
   <script type="text/javascript" src="spec/PlayerSpec.js"></script>
 
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      var console_reporter = new jasmine.ConsoleReporter();
+      jasmineEnv.addReporter(console_reporter);
+      window.console_reporter = console_reporter;
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+
 </head>
 
 <body>
+<!--
 <script type="text/javascript">
   var console_reporter = new jasmine.ConsoleReporter()
   jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
   jasmine.getEnv().addReporter(console_reporter);
   jasmine.getEnv().execute();
 </script>
-
+-->
 </body>
 </html>
