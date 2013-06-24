@@ -41,7 +41,7 @@ class JasmineTestType extends GrailsTestTypeSupport {
         resultproperty:"cmdExit",
         failonerror: "false",
         executable: 'phantomjs') {
-            arg(line: "src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee src/jasmine/SpecRunner.html")
+            arg(line: "src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee test/jasmine/SpecRunner.html")
         }
 
         return new JasmineTestTypeResult(Integer.valueOf(ant.project.properties.cmdExit))
