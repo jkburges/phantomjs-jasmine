@@ -6,4 +6,3 @@ ant.copy(todir: "${basedir}/src/jasmine")
 {
 	fileset(dir: "${pluginBasedir}/src/jasmine")
 }
-

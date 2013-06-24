@@ -1,20 +1,27 @@
-eventTestPhaseEnd = { phase ->
-    if (phase == "other") {
-       println "jasmine" 
+loadJasmineTestTypeClass = { ->
+    // def doLoad = { -> classLoader.loadClass('grails.plugin.jasmine.JasmineTestType') }
+    // try {
+    //     doLoad()
+    // } catch (ClassNotFoundException e) {
+    //     includeTargets << grailsScript("_GrailsCompile")
+    //     compile()
+    //     doLoad()
+    // }
 
-	   //phantomjs src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee src/jasmine/SpecRunner.html
+    classLoader.loadClass('grails.plugin.jasmine.JasmineTestType')
+}
 
-       ant.exec(outputproperty:"cmdOut",
-             errorproperty: "cmdErr",
-             resultproperty:"cmdExit",
-             failonerror: "true",
-             executable: 'phantomjs') {
-         arg(line: "src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee src/jasmine/SpecRunner.html")
+loadJasmineTestTypes = {
+    if (!binding.variables.containsKey("unitTests")) return
+    def jasmineTestTypeClass = loadJasmineTestTypeClass()
+    //    [unit: unitTests, integration: integrationTests].each { name, types ->
+    [unit: unitTests].each { name, types ->
+        if (!types.any { it.class == jasmineTestTypeClass }) {
+            types << jasmineTestTypeClass.newInstance(name)
         }
-println "return code:  ${ant.project.properties.cmdExit}"
-println "stderr:         ${ant.project.properties.cmdErr}"
-println "stdout:        ${ ant.project.properties.cmdOut}"
-
     }
 }
 
+eventAllTestsStart = {
+    loadJasmineTestTypes()
+}
