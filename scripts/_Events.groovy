@@ -1,13 +1,6 @@
 loadJasmineTestTypeClass = { ->
-    // def doLoad = { -> classLoader.loadClass('grails.plugin.jasmine.JasmineTestType') }
-    // try {
-    //     doLoad()
-    // } catch (ClassNotFoundException e) {
-    //     includeTargets << grailsScript("_GrailsCompile")
-    //     compile()
-    //     doLoad()
-    // }
-
+    includeTargets << grailsScript("_GrailsCompile")
+    compile()
     classLoader.loadClass('grails.plugin.jasmine.JasmineTestType')
 }
 

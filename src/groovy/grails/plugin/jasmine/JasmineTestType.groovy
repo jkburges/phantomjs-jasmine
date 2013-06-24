@@ -31,26 +31,20 @@ class JasmineTestType extends GrailsTestTypeSupport {
 
     @Override
     int doPrepare() {
-        println "doPrepare()"
         1
     }
 
     @Override
     GrailsTestTypeResult doRun (GrailsTestEventPublisher eventPublisher) {
-        eventPublisher.testCaseStart('jasmine')
-
+        def ant = new AntBuilder()
         ant.exec(
-        outputproperty:"cmdOut",
-        errorproperty: "cmdErr",
         resultproperty:"cmdExit",
-        failonerror: "true",
+        failonerror: "false",
         executable: 'phantomjs') {
             arg(line: "src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee src/jasmine/SpecRunner.html")
         }
 
-        eventPublisher.testCaseEnd('jasmine')
-
-        return new JasmineTestTypeResult(1, 0)
+        return new JasmineTestTypeResult(Integer.valueOf(ant.project.properties.cmdExit))
     }
 
     @Override

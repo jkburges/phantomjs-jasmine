@@ -13,9 +13,9 @@ class JasmineTestTypeResult implements GrailsTestTypeResult {
     int failCount = 0
     int passCount = 1
 
-    JasmineTestTypeResult(int passCount, int failCount) {
-        this.passCount = passCount
-        this.failCount = failCount
+    JasmineTestTypeResult(int jasmineExitCode) {
+        this.passCount = jasmineExitCode == 0 ? 1 : 0
+        this.failCount = jasmineExitCode == 0 ? 0 : 1
     }
 
     int getFailCount() {
