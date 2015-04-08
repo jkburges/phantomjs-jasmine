@@ -16,7 +16,7 @@ Runs jasmine tests using PhantomJS.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/phantomjs-jasmine"
+    def documentation = "https://github.com/jkburges/phantomjs-jasmine"
 
     def environments = ['test']
 
