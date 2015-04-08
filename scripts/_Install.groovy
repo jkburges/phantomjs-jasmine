@@ -1,9 +1,6 @@
-ant.mkdir(dir:"${basedir}/test/jasmine")
-
-ant.mkdir(dir:"${basedir}/src/jasmine")
-
-// Copy required javascript files.
-ant.copy(todir: "${basedir}/src/jasmine")
-{
-	fileset(dir: "${pluginBasedir}/src/jasmine")
+[ 'src/jasmine', 'test/jasmine', 'web-app/js' ].each { path ->
+    ant.mkdir(dir: "${basedir}/${path}")
+    ant.copy(todir: "${basedir}/${path}") {
+        fileset(dir: "${pluginBasedir}/${path}")
+    }
 }

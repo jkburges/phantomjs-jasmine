@@ -2,4 +2,7 @@
 .project
 .settings
 *~
-
+*.zip
+plugin.xml
+stacktrace.log
+target
