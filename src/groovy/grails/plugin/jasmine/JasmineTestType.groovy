@@ -37,17 +37,6 @@ class JasmineTestType extends GrailsTestTypeSupport {
     @Override
     GrailsTestTypeResult doRun (GrailsTestEventPublisher eventPublisher) {
 
-        // Generate the html.
-        Class fooClass = Class.forName("GrailsTemplateEngineService");
-        //        Method fooMethod = fooClass.getMethod("renderView", new Class[] { String.class });
-
-        //String fooReturned = fooMethod.invoke(fooClass.newInstance(), 
-        // new String[] { "I did it"}).toString();
-    //String text = new GrailsTemplateEngineService().renderView("/jasmine/SpecRunner", [message:"hello"])
-    fooClass.newInstance().renderView('/jasmine/SpecRunner')
-
-        println "text: ${text}"
-        
         def ant = new AntBuilder()
         ant.exec(
         resultproperty:"cmdExit",
