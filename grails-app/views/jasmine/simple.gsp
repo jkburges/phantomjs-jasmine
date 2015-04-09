@@ -6,6 +6,40 @@
 
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'js/jasmine/lib/jasmine-1.3.1', file: 'jasmine.css', base: resourceBase)}">
 
-    <script type="text/javascript" src="${resource(dir: 'js/jasmine/lib/jasmine-1.3.1', file: 'jasmine.js', base: resourceBase)}"></script>
+    <g:each var="scriptDesc" in="${scripts}">
+      <script type="text/javascript" src="${resource(dir: scriptDesc.dir, file: scriptDesc.file, base: scriptDesc.base)}"></script>
+    </g:each>
+
+    <script type="text/javascript">
+      (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+      return htmlReporter.specFilter(spec);
+      };
+
+      var console_reporter = new jasmine.ConsoleReporter();
+      jasmineEnv.addReporter(console_reporter);
+      window.console_reporter = console_reporter;
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+      if (currentWindowOnload) {
+      currentWindowOnload();
+      }
+      execJasmine();
+      };
+
+      function execJasmine() {
+      jasmineEnv.execute();
+      }
+
+      })();
+    </script>
   </head>
 </html>
