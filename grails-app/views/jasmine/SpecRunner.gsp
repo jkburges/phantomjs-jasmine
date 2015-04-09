@@ -4,20 +4,20 @@
 <head>
   <title>Jasmine Spec Runner</title>
 
+  <!-- TODO -->
   <link rel="shortcut icon" type="image/png" href="../../src/jasmine/lib/jasmine-1.3.1/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="../../src/jasmine/lib/jasmine-1.3.1/jasmine.css">
-  
-  <g:resource dir="js" file="mycode.js" />
-  
-  <script type="text/javascript" src="../../src/jasmine/lib/jasmine-1.3.1/jasmine.js"></script>
-  <script type="text/javascript" src="../../src/jasmine/lib/jasmine-1.3.1/jasmine-html.js"></script>
-  <script type="text/javascript" src="../../src/jasmine/lib/phantom-jasmine/console-runner.js"></script>
+<%--
+  <script type="text/javascript" src="${resource(dir: 'js/jasmine/lib/jasmine-1.3.1', file: 'jasmine.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/jasmine/lib/jasmine-1.3.1', file: 'jasmine-html.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js/phantom-jasmine, file: 'console-runner.js')}"></script>
 
   <!-- include source files here... -->
-  <script type="text/javascript" src="../../web-app/js/Player.js"></script>
-  <script type="text/javascript" src="../../web-app/js/Song.js"></script>
+  <script type="text/javascript" src="${resource(dir: 'js', file: 'Player.js')}"></script>
+  <script type="text/javascript" src="${resource(dir: 'js', file: 'Song.js')}"></script>
 
   <!-- include spec files here... -->
+  <!-- TODO -->
   <script type="text/javascript" src="spec/SpecHelper.js"></script>
   <script type="text/javascript" src="spec/PlayerSpec.js"></script>
 
@@ -52,7 +52,7 @@
 
     })();
   </script>
-
+-->
 </head>
 
 <body>
