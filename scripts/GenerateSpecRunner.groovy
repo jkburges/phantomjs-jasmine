@@ -27,7 +27,7 @@ target(generateSpecRunner: "Generates SpecRunner.html, which is used to run the 
     ]
 
     writer << renderer.render(
-        view: '/jasmine/simple',
+        view: '/jasmine/specRunner',
         model: model
     )
 
