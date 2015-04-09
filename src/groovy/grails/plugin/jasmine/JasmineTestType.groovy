@@ -16,8 +16,6 @@ import grails.util.Environment
 class JasmineTestType extends GrailsTestTypeSupport {
 
     static final ENVIRONMENT = Environment.TEST.name
-    //    static final CONFIG_NAME = "CucumberConfig.groovy"
-    // static final CONFIG_PATH = ["grails-app", "conf", CONFIG_NAME].join (File.separator)
     static final NAME = "jasmine"
 
     JasmineTestType (String testPhase) {
@@ -41,8 +39,9 @@ class JasmineTestType extends GrailsTestTypeSupport {
         ant.exec(
         resultproperty:"cmdExit",
         failonerror: "false",
+        // TODO: hard-coded target dir
         executable: 'phantomjs') {
-            arg(line: "src/jasmine/lib/phantom-jasmine/run_jasmine_test.coffee test/jasmine/SpecRunner.html")
+            arg(line: "web-app/js/phantom-jasmine/run_jasmine_test.coffee target/SpecRunner.html")
         }
 
         return new JasmineTestTypeResult(Integer.valueOf(ant.project.properties.cmdExit))
